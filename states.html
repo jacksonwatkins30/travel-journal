@@ -29,9 +29,12 @@ header.top nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:sp
 .links a:hover,.links a[aria-current]{background:var(--tan);color:var(--ink)}
 .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;padding-top:40px;margin-bottom:22px}
 .head h1{font-size:clamp(36px,5vw,56px);line-height:1}
-.count{display:flex;align-items:baseline;gap:10px;padding:14px 20px;transform:rotate(1.2deg)}
+.counts{display:flex;gap:14px;flex-wrap:wrap}
+.count{display:flex;align-items:baseline;gap:10px;padding:14px 20px}
 .count .display{font-size:52px;line-height:1}
 .count span:last-child{font-weight:800;color:var(--muted)}
+.count.c1{transform:rotate(-1deg)}.count.c2{transform:rotate(1.4deg);background:var(--mustard)}
+.count.c2 span:last-child{color:var(--ink)}
 .stage{position:relative;overflow:hidden;padding:0}
 #scene{display:block;width:100%;height:min(68vh,620px);touch-action:none;cursor:grab}
 #scene:active{cursor:grabbing}
@@ -39,29 +42,30 @@ header.top nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:sp
 #flat .st{fill:var(--paper);stroke:var(--ink);stroke-width:1.2;cursor:pointer}
 #flat .st.on{fill:var(--mustard)}
 #flat .st:hover{fill:var(--tan)}#flat .st.on:hover{fill:#D59A2A}
+#flat .city{fill:var(--terra);stroke:var(--ink);stroke-width:1.5;cursor:pointer}
 .overlay{position:absolute;left:14px;right:14px;top:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;pointer-events:none;z-index:2}
 .overlay>*{pointer-events:auto}
-.legend{display:flex;align-items:center;gap:8px;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:800}
+.legend{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:800}
+.legend span{display:inline-flex;align-items:center;gap:7px}
 .legend i{width:14px;height:14px;border-radius:4px;border:2px solid var(--ink);background:var(--mustard)}
+.legend i.pin{border-radius:50%;background:var(--terra)}
 .tools{display:flex;gap:8px;flex-wrap:wrap}
 .tool{min-height:44px;padding:0 14px;border:3px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);font:inherit;font-weight:900;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
 .tool.on{background:var(--ink);color:var(--paper)}
-.hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);font-size:13px;font-weight:800;color:var(--muted);background:rgba(251,245,232,.9);border:2px solid var(--ink);border-radius:999px;padding:5px 12px;white-space:nowrap;z-index:2;transition:opacity .4s}
-.tip{position:absolute;z-index:3;pointer-events:none;background:var(--ink);color:var(--paper);font-weight:800;font-size:13px;padding:5px 10px;border-radius:8px;transform:translate(-50%,-140%);white-space:nowrap;opacity:0;transition:opacity .12s}
-.info{margin-top:18px;min-height:64px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 18px;border:2px dashed var(--ink);border-radius:16px;background:var(--paper);font-weight:700}
-.info b{font-family:'Bowlby One',sans-serif;font-weight:400;font-size:22px}
-.tag{font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:2px solid var(--ink)}
-.tag.y{background:var(--mustard)}.tag.n{background:var(--sand)}
-.info a.trip{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:3px solid var(--ink);border-radius:999px;background:var(--sand);text-decoration:none;font-weight:900;box-shadow:3px 3px 0 var(--ink)}
-.local-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:12px 16px;border:3px solid var(--ink);border-radius:14px;background:#FFF3D6;font-weight:700;font-size:14px}
+.hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);font-size:13px;font-weight:800;color:var(--muted);background:rgba(251,245,232,.92);border:2px solid var(--ink);border-radius:999px;padding:5px 12px;white-space:nowrap;z-index:2;transition:opacity .4s;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis}
+.hint.edit{background:var(--mustard);color:var(--ink)}
+.tip{position:absolute;z-index:3;pointer-events:none;background:var(--ink);color:var(--paper);font-weight:800;font-size:13px;padding:6px 10px;border-radius:10px;transform:translate(-50%,calc(-100% - 14px));white-space:nowrap;opacity:0;transition:opacity .12s;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.tip.show{opacity:1}
+.tip.pinned{pointer-events:auto}
+.tip small{font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mustard)}
+.tip a{color:var(--paper);text-decoration:underline;font-weight:900}
+.tip a:hover{color:var(--mustard)}
+.local-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding:12px 16px;border:3px solid var(--ink);border-radius:14px;background:#FFF3D6;font-weight:700;font-size:14px}
 .local-bar[hidden]{display:none}
 .local-bar button{min-height:40px;padding:0 14px;border:3px solid var(--ink);border-radius:999px;background:var(--paper);font:inherit;font-weight:900;cursor:pointer}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
-.chip{font-size:13px;font-weight:900;padding:6px 12px;border-radius:999px;border:2px solid var(--ink);background:var(--mustard);box-shadow:2px 2px 0 var(--ink);cursor:pointer;font-family:inherit;transition:transform .15s cubic-bezier(.3,1.6,.5,1)}
-.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 footer{border-top:3px solid var(--ink);background:var(--ink);color:var(--sand);padding:26px 0;margin-top:72px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;font-size:13px}
-@media(max-width:640px){#scene{height:400px}.count .display{font-size:40px}.hint{font-size:12px}}
+@media(max-width:640px){#scene{height:400px}.count .display{font-size:38px}.count{padding:10px 16px}.hint{font-size:12px}.legend{font-size:12px;gap:10px}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
@@ -77,27 +81,27 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 <main class="wrap">
   <div class="head">
     <div><span class="script">Pins on the map</span><h1 class="display">States I've Been</h1></div>
-    <div class="card count" aria-live="polite"><span class="display" id="stateCount">0</span><span>of 50 states</span></div>
+    <div class="counts" aria-live="polite">
+      <div class="card count c1"><span class="display" id="stateCount">0</span><span>of 50 states</span></div>
+      <div class="card count c2"><span class="display" id="cityCount">0</span><span>cities</span></div>
+    </div>
   </div>
 
-  <div class="card stage">
-    <canvas id="scene" aria-label="3D map of the United States. Visited states are raised and lit up. Drag to spin, pinch or scroll to zoom." role="img"></canvas>
-    <svg id="flat" viewBox="0 0 975 610" role="group" aria-label="Map of US states. Visited states are lit up."><g id="flatLayer"></g></svg>
+  <div class="card stage" id="stage">
+    <canvas id="scene" aria-label="3D map of the United States. Visited states are raised and lit up, with pins in cities visited. Drag to spin, pinch or scroll to zoom." role="img"></canvas>
+    <svg id="flat" viewBox="0 0 975 610" role="group" aria-label="Map of US states. Visited states are lit up."><g id="flatLayer"></g><g id="flatCities"></g></svg>
     <div class="overlay">
-      <div class="legend"><i></i>Been there</div>
+      <div class="legend"><span><i></i>Been there</span><span><i class="pin"></i>Cities</span></div>
       <div class="tools">
-        <button type="button" class="tool press" id="viewBtn" onclick="window.toggleView()">Flat view</button>
-        <button type="button" class="tool press" id="editBtn" aria-pressed="false" onclick="window.toggleEdit()">Edit map</button>
+        <button type="button" class="tool press" id="viewBtn" onclick="window.toggleView()">Eagle Eye View</button>
+        <button type="button" class="tool press" id="editBtn" aria-pressed="false" onclick="window.toggleEdit()">Edit Map</button>
       </div>
     </div>
-    <div class="tip" id="tip"></div>
-    <div class="hint" id="hint">Drag to spin · scroll or pinch to zoom · tap a state</div>
+    <div class="tip" id="tip" role="status"></div>
+    <div class="hint" id="hint">Drag to spin · scroll or pinch to zoom · tap a state or pin</div>
   </div>
 
-  <div class="info" id="info" aria-live="polite">Tap a state to see trips there.</div>
   <div class="local-bar" id="localBar" role="status" hidden><span id="localMsg"></span><span style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" onclick="window.copyStates()">Copy my list</button><button type="button" onclick="window.resetStates()">Undo my changes</button></span></div>
-
-  <div class="chips" id="chips" aria-label="Visited states"></div>
 </main>
 
 <footer><div class="wrap"><span class="display" style="font-size:18px">Field Notes</span><span>State boundaries: US Census Bureau</span></div></footer>
@@ -105,15 +109,30 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 <script>
 // shared state + 2D fallback (plain script so it works even without WebGL)
 const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-window.FN = {US:null, TRIPS:[], BASE:[], names:{}, edit:false, picked:null, listeners:[]};
+window.FN = {US:null, TRIPS:[], BASE:[], CITIES:[], names:{}, edit:false, listeners:[]};
 function localStates(){try{const v=localStorage.getItem('fieldnotes-states');return v?JSON.parse(v):null;}catch(e){return null;}}
 function visitedSet(){return new Set(localStates()||FN.BASE);}
 function visitedCount(){return [...visitedSet()].filter(s=>s!=='DC').length;}
 function tripYear(t){return +(t.year||(t.start||t.sort||'').slice(0,4))||'';}
+// d3.geoAlbersUsa lower-48 (scale 1300, translate 487.5,305) — matches the us-atlas shapes
+function albers(lon,lat){
+  const r=Math.PI/180, p0=29.5*r, p1=45.5*r, n=(Math.sin(p0)+Math.sin(p1))/2, c=1+Math.sin(p0)*(2*n-Math.sin(p0)), r0=Math.sqrt(c)/n;
+  const raw=(l,p)=>{const rr=Math.sqrt(c-2*n*Math.sin(p))/n; return [rr*Math.sin(l*n), r0-rr*Math.cos(l*n)];};
+  const C=raw(-0.6*r,38.7*r), P=raw((lon+96)*r,lat*r);
+  return [487.5+1300*(P[0]-C[0]), 305-1300*(P[1]-C[1])];
+}
+const hintEl=()=>document.getElementById('hint');
+const DEFAULT_HINT='Drag to spin · scroll or pinch to zoom · tap a state or pin';
+function showTip(html,x,y,pinned){
+  const tip=document.getElementById('tip'), stage=document.getElementById('stage').getBoundingClientRect();
+  tip.innerHTML=html; tip.style.left=Math.max(70,Math.min(stage.width-70,x))+'px'; tip.style.top=Math.max(60,y)+'px';
+  tip.classList.add('show'); tip.classList.toggle('pinned',!!pinned);
+}
+function hideTip(){const tip=document.getElementById('tip'); tip.classList.remove('show','pinned');}
 function refreshUI(){
   const v=visitedSet();
   document.getElementById('stateCount').textContent=visitedCount();
-  document.getElementById('chips').innerHTML=[...v].filter(id=>FN.names[id]).sort((a,b)=>FN.names[a]<FN.names[b]?-1:1).map(id=>`<button type="button" class="chip" onclick="selectState('${id}')">${esc(FN.names[id])}</button>`).join('');
+  document.getElementById('cityCount').textContent=FN.CITIES.length;
   document.querySelectorAll('#flatLayer .st').forEach(el=>{const on=v.has(el.dataset.id);el.classList.toggle('on',on);el.setAttribute('aria-pressed',on);});
   const local=localStates(), bar=document.getElementById('localBar');
   if(local){const add=local.filter(s=>!FN.BASE.includes(s)).length, rem=FN.BASE.filter(s=>!local.includes(s)).length;
@@ -121,24 +140,27 @@ function refreshUI(){
   else bar.hidden=true;
   FN.listeners.forEach(fn=>fn(v));
 }
-function selectState(id){
-  FN.picked=id;
+// tap a state: in Edit Map it toggles; otherwise it shows a pinned tooltip
+function selectState(id,x,y){
   if(FN.edit){
     const v=visitedSet(); v.has(id)?v.delete(id):v.add(id);
     const arr=[...v].sort(), base=[...FN.BASE].sort();
     const same=arr.length===base.length&&arr.every((s,i)=>s===base[i]);
     try{same?localStorage.removeItem('fieldnotes-states'):localStorage.setItem('fieldnotes-states',JSON.stringify(arr));}catch(e){}
+    refreshUI();
   }
-  refreshUI();
   const on=visitedSet().has(id), trips=FN.TRIPS.filter(t=>(t.states||[]).includes(id));
-  let h=`<b>${esc(FN.names[id])}</b><span class="tag ${on?'y':'n'}">${on?'Been there':'Not yet'}</span>`;
-  h+=trips.length?trips.map(t=>`<a class="trip" href="index.html?trip=${encodeURIComponent(t.id)}#trail">${esc(t.title)} · ${tripYear(t)}</a>`).join(''):`<span style="color:var(--muted)">${FN.edit?(on?'Lit up! Tap again to turn it off.':'Tap again to light it up.'):'No trips logged here yet.'}</span>`;
-  document.getElementById('info').innerHTML=h;
+  const links=trips.map(t=>`<a href="index.html?trip=${encodeURIComponent(t.id)}#trail">${esc(t.title)} · ${tripYear(t)}</a>`).join('');
+  showTip(`<small>${on?'Been there':'Not yet'}</small>${esc(FN.names[id])}${links}`,x,y,true);
+}
+function selectCity(i,x,y){
+  const c=FN.CITIES[i]; showTip(`<small>City</small>${esc(c.name)}, ${esc(c.st)}`,x,y,true);
 }
 window.toggleEdit=function(){
   FN.edit=!FN.edit; const b=document.getElementById('editBtn');
-  b.classList.toggle('on',FN.edit); b.setAttribute('aria-pressed',FN.edit); b.textContent=FN.edit?'Done editing':'Edit map';
-  document.getElementById('info').textContent=FN.edit?"Tap states to light up where you've been.":'Tap a state to see trips there.';
+  b.classList.toggle('on',FN.edit); b.setAttribute('aria-pressed',FN.edit); b.textContent=FN.edit?'Done Editing':'Edit Map';
+  const h=hintEl(); h.classList.toggle('edit',FN.edit); h.style.opacity=1;
+  h.textContent=FN.edit?"Editing · tap states to light them up":DEFAULT_HINT;
 };
 window.copyStates=function(){
   const list=[...visitedSet()].sort().join(', '), msg=document.getElementById('localMsg');
@@ -149,19 +171,23 @@ window.resetStates=function(){try{localStorage.removeItem('fieldnotes-states');}
 let flatMode=false;
 window.toggleView=function(){
   flatMode=!flatMode;
-  if(FN.has3d){ FN.setFlat(flatMode); }
-  document.getElementById('viewBtn').textContent=flatMode?'3D view':'Flat view';
+  if(FN.has3d) FN.setFlat(flatMode);
+  document.getElementById('viewBtn').textContent=flatMode?'3D View':'Eagle Eye View';
 };
 function useFlatFallback(){
   document.getElementById('scene').style.display='none'; document.getElementById('flat').style.display='block';
-  document.getElementById('hint').style.display='none'; document.getElementById('viewBtn').style.display='none';
+  hintEl().style.display='none'; document.getElementById('viewBtn').style.display='none';
 }
-const ready = Promise.all(['data/us-states.json','data/visited.json','data/trips.json'].map(u=>fetch(u,{cache:'no-cache'}).then(r=>r.json()))).then(([us,vis,trips])=>{
+document.addEventListener('click',e=>{ if(!e.target.closest('#stage')) hideTip(); });
+const ready = Promise.all(['data/us-states.json','data/visited.json','data/trips.json','data/cities.json'].map(u=>fetch(u,{cache:'no-cache'}).then(r=>r.json()))).then(([us,vis,trips,cities])=>{
   FN.US=us; FN.BASE=vis.visited||[]; FN.TRIPS=trips; us.states.forEach(s=>FN.names[s.id]=s.name);
-  const layer=document.getElementById('flatLayer');
+  FN.CITIES=cities.map(c=>{const [x,y]=albers(c.lon,c.lat); return Object.assign({},c,{x,y});});
+  const layer=document.getElementById('flatLayer'), svg=document.getElementById('flat');
   layer.innerHTML=us.states.map(s=>`<path class="st" d="${s.d}" data-id="${s.id}" tabindex="0" role="button" aria-label="${esc(s.name)}"><title>${esc(s.name)}</title></path>`).join('');
-  layer.addEventListener('click',e=>{const el=e.target.closest('.st'); if(el) selectState(el.dataset.id);});
-  layer.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('st')){e.preventDefault();selectState(e.target.dataset.id);}});
+  document.getElementById('flatCities').innerHTML=FN.CITIES.map((c,i)=>`<circle class="city" cx="${c.x.toFixed(1)}" cy="${c.y.toFixed(1)}" r="4" data-i="${i}"><title>${esc(c.name)}, ${c.st}</title></circle>`).join('');
+  const pos=e=>{const r=document.getElementById('stage').getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];};
+  svg.addEventListener('click',e=>{e.stopPropagation(); const [x,y]=pos(e); const ci=e.target.closest('.city'); if(ci) return selectCity(+ci.dataset.i,x,y); const el=e.target.closest('.st'); if(el) selectState(el.dataset.id,x,y); else hideTip();});
+  layer.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('st')){e.preventDefault();const b=e.target.getBoundingClientRect(),r=document.getElementById('stage').getBoundingClientRect();selectState(e.target.dataset.id,b.left-r.left+b.width/2,b.top-r.top+b.height/2);}});
   refreshUI();
 });
 window.FN.ready=ready;
@@ -183,14 +209,13 @@ else{
   const scene=new THREE.Scene(); scene.background=new THREE.Color('#E9D8B4');
   const camera=new THREE.PerspectiveCamera(32,1,1,6000); camera.up.set(0,0,1);
   const controls=new OrbitControls(camera,canvas);
-  controls.enableDamping=true; controls.enablePan=false; controls.minDistance=400; controls.maxDistance=4800;
+  controls.enableDamping=true; controls.enablePan=false; controls.minDistance=300; controls.maxDistance=4800;
   controls.maxPolarAngle=1.25; controls.rotateSpeed=.6;
 
   scene.add(new THREE.HemisphereLight('#FFF7E6','#8A6A4A',1.6));
   const sun=new THREE.DirectionalLight('#FFFFFF',2.2); sun.position.set(-400,-600,900); sun.castShadow=true;
   sun.shadow.mapSize.set(2048,2048); Object.assign(sun.shadow.camera,{left:-600,right:600,top:450,bottom:-450,near:10,far:2500});
   scene.add(sun);
-  // table under the map
   const table=new THREE.Mesh(new THREE.PlaneGeometry(4000,4000),new THREE.MeshToonMaterial({color:'#E9D8B4'}));
   table.position.z=-1; table.receiveShadow=true; scene.add(table);
 
@@ -205,9 +230,28 @@ else{
     const mat=new THREE.MeshToonMaterial({color:C_OFF.clone()});
     const mesh=new THREE.Mesh(geom,mat); mesh.castShadow=true; mesh.receiveShadow=true;
     mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(geom,40),lineMat));
-    mesh.userData={id:s.id,h:BASE_H,target:BASE_H,on:false,hover:false};
+    mesh.userData={kind:'state',id:s.id,h:BASE_H,target:BASE_H,on:false,hover:false};
     mesh.scale.z=BASE_H; scene.add(mesh); states.push(mesh); byId[s.id]=mesh;
   });
+
+  // city pins: dark stem + terracotta head, standing on their state
+  const STEM_H=20, HEAD_R=4.6;
+  const stemGeo=new THREE.CylinderGeometry(.9,.9,1,8); stemGeo.rotateX(Math.PI/2); stemGeo.translate(0,0,.5);
+  const headGeo=new THREE.SphereGeometry(HEAD_R,18,14);
+  const stemMat=new THREE.MeshToonMaterial({color:'#3B2A1E'});
+  const C_PIN=new THREE.Color('#B8552F'), C_PINHOVER=new THREE.Color('#E0A93B');
+  const pins=[], heads=[];
+  FN.CITIES.forEach((c,i)=>{
+    const g=new THREE.Group(); g.position.set(c.x-487.5,-(c.y-305),0);
+    const stem=new THREE.Mesh(stemGeo,stemMat); stem.castShadow=true;
+    const head=new THREE.Mesh(headGeo,new THREE.MeshToonMaterial({color:C_PIN.clone()})); head.castShadow=true;
+    head.add(new THREE.LineSegments(new THREE.EdgesGeometry(headGeo,60),lineMat));
+    head.userData={kind:'city',i};
+    g.add(stem); g.add(head); scene.add(g);
+    const p={g,stem,head,i,st:byId[c.st],drop:REDUCED?0:260+(i%11)*18, vel:0, delay:REDUCED?0:.3+i*0.025, k:1, kGoal:1, hover:false};
+    pins.push(p); heads.push(head);
+  });
+
   function paint(v){
     states.forEach(m=>{
       const on=v.has(m.userData.id), was=m.userData.on; m.userData.on=on;
@@ -220,47 +264,68 @@ else{
   function tint(m){const u=m.userData; m.material.color.copy(u.on?(u.hover?C_ONHOVER:C_ON):(u.hover?C_HOVER:C_OFF));}
   FN.listeners.push(paint); paint(new Set(visitedSet()));
 
-  // camera presets
   const VIEW3D={pos:new THREE.Vector3(0,-1050,780)}, VIEWFLAT={pos:new THREE.Vector3(0,-1,1250)};
-  let camGoal=null;
+  let camGoal=null, eagle=false;
   function fit(){
     const w=canvas.clientWidth, h=canvas.clientHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
     const k=Math.max(1,1.5/camera.aspect); VIEW3D.pos.set(0,-1050*k,780*k); VIEWFLAT.pos.set(0,-1,1250*k);
   }
   fit(); camera.position.copy(VIEW3D.pos); controls.update();
-  window.addEventListener('resize',()=>{fit();});
-  FN.setFlat=f=>{camGoal=(f?VIEWFLAT:VIEW3D).pos.clone();};
+  window.addEventListener('resize',fit);
+  FN.setFlat=f=>{eagle=f; camGoal=(f?VIEWFLAT:VIEW3D).pos.clone(); idle=false; hideTip(); pins.forEach(p=>p.kGoal=f?.15:1);};
 
-  // picking
-  const ray=new THREE.Raycaster(), ptr=new THREE.Vector2(); let hovered=null, down=null;
+  // picking: pins first, then states
+  const ray=new THREE.Raycaster(), ptr=new THREE.Vector2(); let hovered=null, hoveredPin=null, down=null;
   const tip=document.getElementById('tip'), hint=document.getElementById('hint');
   function pickAt(e){
     const r=canvas.getBoundingClientRect(); ptr.set(((e.clientX-r.left)/r.width)*2-1, -((e.clientY-r.top)/r.height)*2+1);
-    ray.setFromCamera(ptr,camera); const hit=ray.intersectObjects(states,false)[0]; return hit?hit.object:null;
+    ray.setFromCamera(ptr,camera);
+    const ph=ray.intersectObjects(heads,false)[0]; if(ph) return ph.object;
+    const hit=ray.intersectObjects(states,false)[0]; return hit?hit.object:null;
   }
+  const local=e=>{const r=document.getElementById('stage').getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];};
   canvas.addEventListener('pointermove',e=>{
-    if(e.pointerType!=='mouse') return;
-    const m=pickAt(e);
-    if(hovered!==m){ if(hovered){hovered.userData.hover=false;tint(hovered);} hovered=m; if(m){m.userData.hover=true;tint(m);} }
-    if(m){const r=canvas.getBoundingClientRect(); tip.style.left=(e.clientX-r.left)+'px'; tip.style.top=(e.clientY-r.top)+'px'; tip.textContent=FN.names[m.userData.id]+(m.userData.on?' ✓':''); tip.style.opacity=1; canvas.style.cursor='pointer';}
-    else {tip.style.opacity=0; canvas.style.cursor='';}
+    if(e.pointerType!=='mouse'||down) return;
+    const m=pickAt(e), st=m&&m.userData.kind==='state'?m:null, pin=m&&m.userData.kind==='city'?pins[m.userData.i]:null;
+    if(hovered!==st){ if(hovered){hovered.userData.hover=false;tint(hovered);} hovered=st; if(st){st.userData.hover=true;tint(st);} }
+    if(hoveredPin!==pin){ if(hoveredPin){hoveredPin.hover=false;hoveredPin.head.material.color.copy(C_PIN);} hoveredPin=pin; if(pin){pin.hover=true;pin.head.material.color.copy(C_PINHOVER);} }
+    if(tip.classList.contains('pinned')) return;
+    const [x,y]=local(e);
+    if(pin){ const c=FN.CITIES[pin.i]; showTip(`${esc(c.name)}, ${esc(c.st)}`,x,y,false); canvas.style.cursor='pointer'; }
+    else if(st){ showTip(esc(FN.names[st.userData.id])+(st.userData.on?' ✓':''),x,y,false); canvas.style.cursor='pointer'; }
+    else { hideTip(); canvas.style.cursor=''; }
   });
-  canvas.addEventListener('pointerleave',()=>{tip.style.opacity=0; if(hovered){hovered.userData.hover=false;tint(hovered);hovered=null;}});
-  canvas.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY}; hint.style.opacity=0; idle=false;});
+  canvas.addEventListener('pointerleave',()=>{ if(!tip.classList.contains('pinned')) hideTip(); if(hovered){hovered.userData.hover=false;tint(hovered);hovered=null;} if(hoveredPin){hoveredPin.hover=false;hoveredPin.head.material.color.copy(C_PIN);hoveredPin=null;} });
+  canvas.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY}; if(!FN.edit) hint.style.opacity=0; idle=false;});
   canvas.addEventListener('pointerup',e=>{
     if(!down) return; const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y); down=null;
-    if(moved>6) return; const m=pickAt(e); if(m){ m.userData.bounce=1; selectState(m.userData.id); }
+    if(moved>6) return; const m=pickAt(e); const [x,y]=local(e);
+    if(!m){ hideTip(); return; }
+    if(m.userData.kind==='city'){ const p=pins[m.userData.i]; p.vel=-160; selectCity(p.i,x,y); }
+    else { m.userData.bounce=1; selectState(m.userData.id,x,y); }
   });
+  document.getElementById('stage').addEventListener('click',e=>e.stopPropagation());
 
-  // loop
-  let idle=!REDUCED, t0=performance.now();
-  controls.addEventListener('start',()=>{idle=false; camGoal=null;});
+  let idle=!REDUCED, t0=performance.now(), tStart=t0;
+  controls.addEventListener('start',()=>{idle=false; camGoal=null; if(!FN.edit) hint.style.opacity=0;});
   function frame(t){
-    const dt=Math.min(.05,(t-t0)/1000); t0=t;
+    const dt=Math.min(.05,(t-t0)/1000); t0=t; const since=(t-tStart)/1000;
     states.forEach(m=>{
       const u=m.userData; let goal=u.target+(u.hover?HOVER_H:0);
       if(u.bounce){ goal+=18*u.bounce; u.bounce=Math.max(0,u.bounce-dt*2.4); }
-      u.h+= (goal-u.h)*Math.min(1,dt*(REDUCED?60:9)); m.scale.z=Math.max(.5,u.h);
+      u.h+=(goal-u.h)*Math.min(1,dt*(REDUCED?60:9)); m.scale.z=Math.max(.5,u.h);
+    });
+    pins.forEach(p=>{
+      // drop in from above with a little bounce, then ride the state's height
+      if(since>p.delay && (p.drop>0||p.vel!==0)){ p.vel+=1400*dt; p.drop-=p.vel*dt; if(p.drop<=0){ p.drop=0; p.vel=Math.abs(p.vel)>120?-Math.abs(p.vel)*.35:0; } }
+      p.k+=(p.kGoal-p.k)*Math.min(1,dt*6);
+      const base=(p.st?p.st.scale.z:BASE_H);
+      const lift=p.hover?6:0;
+      p.g.position.z=base+Math.max(0,p.drop)+lift;
+      p.stem.scale.z=STEM_H*p.k;
+      p.head.position.z=STEM_H*p.k+HEAD_R*.6;
+      const hs=(p.hover?1.35:1)*(eagle?.85:1); p.head.scale.setScalar(hs);
+      p.g.visible = since>p.delay || REDUCED;
     });
     if(camGoal){ camera.position.lerp(camGoal,Math.min(1,dt*4)); if(camera.position.distanceTo(camGoal)<1) camGoal=null; }
     else if(idle){ const a=Math.sin(t/5200)*.12, R=Math.hypot(VIEW3D.pos.x,VIEW3D.pos.y); camera.position.set(Math.sin(a)*R, -Math.cos(a)*R, VIEW3D.pos.z); }
