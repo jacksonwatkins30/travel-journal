@@ -1,0 +1,74 @@
+[
+  {
+    "id": "early-2026",
+    "title": "[Early 2026 trip]",
+    "place": "[Destination]",
+    "when": "[Month] 2026",
+    "done": true,
+    "nights": null,
+    "blurb": "[A line or two about where you went and what you did.]",
+    "highlights": ["[Best meal]", "[Best view]", "[Story you'll keep telling]"],
+    "photos": []
+  },
+  {
+    "id": "out-west",
+    "title": "Week Out West",
+    "place": "[Destination]",
+    "when": "Sep 28 – Oct 2, 2026",
+    "start": "2026-09-28",
+    "end": "2026-10-02",
+    "nights": 4,
+    "blurb": "A week off to unplug: nature, exploring, and keeping marathon training on track.",
+    "highlights": ["[Best meal]", "[Best view]", "[Story you'll keep telling]"],
+    "photos": []
+  },
+  {
+    "id": "dallas-scouting",
+    "title": "Dallas Scouting",
+    "place": "Dallas, TX",
+    "state": "TX",
+    "when": "Nov 15, 2026",
+    "start": "2026-11-15",
+    "end": "2026-11-16",
+    "nights": 1,
+    "blurb": "Touring apartments in Uptown and West Village ahead of the move.",
+    "highlights": [],
+    "photos": []
+  },
+  {
+    "id": "mountain-cabin",
+    "title": "Mountain Cabin",
+    "place": "[Mountain town]",
+    "when": "Nov 16 – 20, 2026",
+    "start": "2026-11-16",
+    "end": "2026-11-20",
+    "nights": 4,
+    "blurb": "Four nights tucked into the mountains: hiking, coffee, reading, campfires and a few Coors Banquets.",
+    "highlights": [],
+    "photos": []
+  },
+  {
+    "id": "tahoe",
+    "title": "Tahoe Ski & Golf",
+    "place": "Lake Tahoe, CA",
+    "state": "CA",
+    "when": "Late Feb – Early Mar 2027",
+    "sort": "2027-02-25",
+    "nights": null,
+    "blurb": "Ski days in Tahoe, a round of golf nearby, and cheering on the Napa Valley Marathon.",
+    "highlights": [],
+    "photos": []
+  },
+  {
+    "id": "dallas-move",
+    "title": "New Home Base",
+    "place": "Dallas, TX",
+    "state": "TX",
+    "when": "March 2027",
+    "sort": "2027-03-15",
+    "nights": null,
+    "blurb": "Packing up New York and planting a flag in Dallas.",
+    "highlights": [],
+    "photos": []
+  }
+]
