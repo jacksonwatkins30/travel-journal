@@ -12,6 +12,7 @@ Edit `data/trips.json`. Each trip:
 - photos: drop images in `photos/` and list them, e.g. `"photos": [{"src": "photos/tahoe-1.jpg", "caption": "First chair"}]`
 
 ## States map
+`states.html` is a separate page with a 3D map (three.js from jsDelivr, falls back to a flat SVG map without WebGL). The home page shows only the States Visited card, which links to it.
 `data/visited.json` → `visited` is the list of states lit up for everyone (DC lights up but doesn't count toward 50). "Edit map" on the site saves changes in that browser only; to make them permanent, update `visited`. Shapes: `data/us-states.json`, US Census Bureau boundaries via us-atlas (ISC).
 
 Bucket list: `data/bucket.json`. Check-offs are saved in your browser.

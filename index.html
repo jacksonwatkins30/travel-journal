@@ -153,6 +153,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 .year-btn small{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;margin-left:6px;opacity:.75}
 .trail-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;z-index:2}
 .trail-empty[hidden]{display:none}
+.stat-link{text-decoration:none;color:var(--ink);background:var(--mustard)}
+.stat-link:hover{color:var(--ink)}
+.stat-link .sub{color:var(--ink)}
 .trail-empty div{background:var(--paper);border:3px dashed var(--ink);border-radius:18px;padding:18px 22px;font-weight:800;max-width:420px}
 @media(max-width:640px){
   .map-wrap{padding:14px 10px 12px}.map-count .display{font-size:34px}.year-btn{min-width:80px;font-size:17px}
@@ -172,7 +175,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 <header class="top">
   <nav class="wrap" aria-label="Primary">
     <a href="#top" class="brand display"><span class="compass"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B2A1E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Field Notes</a>
-    <div class="links"><a href="#states">States</a><a href="#trail">The Trail</a><a href="#passport">Passport</a><a href="#snapshots">Snapshots</a><a href="#bucket">Bucket List</a></div>
+    <div class="links"><a href="states.html">States</a><a href="#trail">The Trail</a><a href="#passport">Passport</a><a href="#snapshots">Snapshots</a><a href="#bucket">Bucket List</a></div>
   </nav>
 </header>
 
@@ -201,19 +204,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 
 <div class="wrap stats" id="stats"></div>
 
-<section class="wrap block" id="states">
-  <div class="sec-head"><div><span class="script">Pins on the map</span><h2 class="display">States</h2></div>
-    <button type="button" class="filter press" id="editBtn" aria-pressed="false" onclick="toggleEdit()">Edit map</button></div>
-  <div class="card map-wrap" id="mapWrap">
-    <div class="map-top">
-      <div class="map-count"><span class="display" id="stateCount">0</span><span>of 50 states</span></div>
-      <div class="map-legend" aria-hidden="true"><span><i style="background:#E0A93B"></i>Been there</span><span><i style="background:#B8552F"></i>Trips in <span id="legendYear"></span></span><span><i style="background:repeating-linear-gradient(45deg,#FBF5E8 0 3px,#B8552F 3px 5px)"></i>Coming up</span></div>
-    </div>
-    <svg id="usMap" viewBox="0 0 975 610" role="group" aria-label="Map of US states. Visited states are lit up."><defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#FBF5E8"/><rect width="3" height="8" fill="#B8552F"/></pattern></defs><g id="stateLayer"></g></svg>
-    <div class="map-info" id="mapInfo" aria-live="polite">Tap a state to see trips there.</div>
-  </div>
-  <div class="local-bar" id="localBar" role="status" hidden><span id="localMsg"></span><span class="btns"><button type="button" onclick="copyStates()">Copy my list</button><button type="button" onclick="resetStates()">Undo my changes</button></span></div>
-</section>
 
 <section class="wrap block" id="trail">
   <div class="sec-head"><div><span class="script">Follow the dotted line</span><h2 class="display">The Trail</h2></div><span class="hint">Pick a year, then tap a stop</span></div>
@@ -269,8 +259,8 @@ function renderStats(){
   const next = TRIPS.filter(t=>!isDone(t)).sort((a,b)=>sortKey(a)<sortKey(b)?-1:1)[0];
   let nextSub='';
   if(next){ if(next.start){const days=Math.ceil((new Date(next.start+'T00:00:00')-new Date())/86400000);nextSub=days>1?'in '+days+' days':days===1?'tomorrow':'on the road now';} else nextSub=next.when; }
-  const cards=[['Trips this year',thisYear.length,'and counting'],['States visited',visitedCount(),'lit up on the map'],['Nights away',nights.length?nights.reduce((a,b)=>a+b,0):'—','not in my own bed'],['Next up',next?next.place.replace(/^\[|\]$/g,'').split(',')[0]:'—',nextSub]];
-  document.getElementById('stats').innerHTML = cards.map((c,i)=>`<div class="card stat" style="transform:rotate(${[-1,1,-.5,1.2][i]}deg)"><span class="lbl">${c[0]}</span><span class="val display">${esc(c[1])}</span><span class="sub">${esc(c[2])}</span></div>`).join('');
+  const cards=[['Trips this year',thisYear.length,'and counting'],['States visited',visitedCount(),'see the 3D map →'],['Nights away',nights.length?nights.reduce((a,b)=>a+b,0):'—','not in my own bed'],['Next up',next?next.place.replace(/^\[|\]$/g,'').split(',')[0]:'—',nextSub]];
+  document.getElementById('stats').innerHTML = cards.map((c,i)=>{const link=c[0]==='States visited';const tag=link?'a':'div';return `<${tag} class="card stat${link?' stat-link press':''}"${link?' href="states.html" aria-label="States visited: '+esc(c[1])+'. Open the 3D map"':''} style="transform:rotate(${[-1,1,-.5,1.2][i]}deg)"><span class="lbl">${c[0]}</span><span class="val display">${esc(c[1])}</span><span class="sub">${esc(c[2])}</span></${tag}>`;}).join('');
 }
 
 function renderTrail(){
@@ -329,7 +319,7 @@ function localStates(){try{const v=localStorage.getItem('fieldnotes-states');ret
 function visitedSet(){return new Set(localStates()||BASE_VISITED);}
 function visitedCount(){return [...visitedSet()].filter(s=>s!=='DC').length;}
 function renderMap(){
-  if(!US) return;
+  if(!US||!document.getElementById('stateLayer')) return;
   const v=visitedSet();
   const yr=new Set(yearTrips().flatMap(t=>t.states||[]));
   const upcoming=new Set(TRIPS.filter(t=>!isDone(t)).flatMap(t=>t.states||[]));
@@ -398,6 +388,7 @@ function setYear(y){selYear=y;renderYears();renderTrail();renderMap();}
 Promise.all(['data/trips.json','data/bucket.json','data/us-states.json','data/visited.json'].map(u=>fetch(u,{cache:'no-cache'}).then(r=>r.json()))).then(([t,b,us,vis])=>{
   TRIPS=t.sort((a,b)=>sortKey(a)<sortKey(b)?-1:1); BUCKET=b; US=us; BASE_VISITED=(vis&&vis.visited)||[];
   const next=TRIPS.find(x=>!isDone(x)); sel=(next||TRIPS[TRIPS.length-1]||{}).id;
+  const want=new URLSearchParams(location.search).get('trip'); const wt=want&&TRIPS.find(x=>x.id===want); if(wt){sel=wt.id; if(tripYear(wt)) selYear=tripYear(wt);}
   [renderStats,renderYears,renderMap,renderTrail,renderPassport,renderPhotos,renderBucket].forEach(fn=>{try{fn();}catch(e){console.error(e);}});
 });
 </script>
