@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Nunito:wght@500;700;800;900&family=Caveat:wght@600;700&display=swap">
 <style>
-:root{--sand:#F2E6CF;--paper:#FBF5E8;--ink:#3B2A1E;--muted:#6B5644;--terra:#B8552F;--olive:#5E6B33;--mustard:#E0A93B;--tan:#E9D8B4;--green:#A9CB8E;--green-hover:#8FB873}
+:root{--sand:#F2E6CF;--paper:#FBF5E8;--ink:#3B2A1E;--muted:#6B5644;--terra:#B8552F;--olive:#5E6B33;--mustard:#E0A93B;--tan:#E9D8B4;--green:#2F5D3A;--green-hover:#3E7349;--green-light:#9CC48A}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--sand);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:var(--ink)}a:hover{color:var(--terra)}
@@ -55,7 +55,7 @@ header.top nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:sp
 .tip{position:absolute;z-index:3;pointer-events:none;background:var(--ink);color:var(--paper);font-weight:800;font-size:13px;padding:6px 10px;border-radius:10px;transform:translate(-50%,calc(-100% - 14px));white-space:nowrap;opacity:0;transition:opacity .12s;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
 .tip.show{opacity:1}
 .tip.pinned{pointer-events:auto}
-.tip small{font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
+.tip small{font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--green-light)}
 .tip a{color:var(--paper);text-decoration:underline;font-weight:900}
 .tip a:hover{color:var(--mustard)}
 footer{border-top:3px solid var(--ink);background:var(--ink);color:var(--sand);padding:26px 0;margin-top:72px}
@@ -137,6 +137,7 @@ function selectCity(i,x,y){
   const c=FN.CITIES[i]; showTip(`<small>City</small>${esc(c.name)}, ${esc(c.st)}`,x,y,true);
 }
 let flatMode=false;
+window.leaveEagle=function(){ if(!flatMode) return; flatMode=false; document.getElementById('viewBtn').textContent='Eagle Eye View'; };
 window.toggleView=function(){
   flatMode=!flatMode;
   if(FN.has3d) FN.setFlat(flatMode);
@@ -189,7 +190,7 @@ else{
 
   const BASE_H=6, VISIT_H=26, HOVER_H=10;
   const lineMat=new THREE.LineBasicMaterial({color:'#3B2A1E'});
-  const C_OFF=new THREE.Color('#FBF5E8'), C_ON=new THREE.Color('#A9CB8E'), C_HOVER=new THREE.Color('#E9D8B4'), C_ONHOVER=new THREE.Color('#8FB873');
+  const C_OFF=new THREE.Color('#FBF5E8'), C_ON=new THREE.Color('#2F5D3A'), C_HOVER=new THREE.Color('#E9D8B4'), C_ONHOVER=new THREE.Color('#3E7349');
   const states=[]; const byId={};
   function parse(d){return d.split('M').filter(Boolean).map(r=>r.replace('Z','').split('L').map(p=>{const [x,y]=p.split(',').map(Number);return new THREE.Vector2(x-487.5,-(y-305));}));}
   FN.US.states.forEach(s=>{
@@ -262,6 +263,10 @@ else{
     if(pin){ const c=FN.CITIES[pin.i]; showTip(`${esc(c.name)}, ${esc(c.st)}`,x,y,false); canvas.style.cursor='pointer'; }
     else if(st){ showTip(esc(FN.names[st.userData.id])+(st.userData.on?' ✓':''),x,y,false); canvas.style.cursor='pointer'; }
     else { hideTip(); canvas.style.cursor=''; }
+  });
+  canvas.addEventListener('pointermove',e=>{
+    if(!down||!eagle) return;
+    if(Math.hypot(e.clientX-down.x,e.clientY-down.y)>6){ eagle=false; camGoal=null; pins.forEach(p=>p.kGoal=1); window.leaveEagle(); }
   });
   canvas.addEventListener('pointerleave',()=>{ if(!tip.classList.contains('pinned')) hideTip(); if(hovered){hovered.userData.hover=false;tint(hovered);hovered=null;} if(hoveredPin){hoveredPin.hover=false;hoveredPin.head.material.color.copy(C_PIN);hoveredPin=null;} });
   canvas.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY}; if(!FN.edit) hint.style.opacity=0; idle=false;});
