@@ -13,7 +13,7 @@ Edit `data/trips.json`. Each trip:
 
 ## States map
 `states.html` is a separate page with a 3D map (three.js from jsDelivr, falls back to a flat SVG map without WebGL). The home page shows only the States Visited card, which links to it.
-`data/visited.json` → `visited` is the list of states lit up for everyone (DC lights up but doesn't count toward 50). "Edit map" on the site saves changes in that browser only; to make them permanent, update `visited`. Shapes: `data/us-states.json`, US Census Bureau boundaries via us-atlas (ISC).
+`data/visited.json` → `visited` is the list of states lit up for everyone (DC lights up but doesn't count toward 50). "Edit Map" changes stay in that browser until you tap "Publish to site": it opens a pre-filled GitHub issue titled "Map update…", and `.github/workflows/map-update.yml` (owner-only) writes the list into `visited.json`, commits and closes the issue. Shapes: `data/us-states.json`, US Census Bureau boundaries via us-atlas (ISC).
 
 ## Cities
 `data/cities.json`: `{name, st, lat, lon}` per city; the states page projects lat/lon onto the map (Albers USA, same as the state shapes) and drops a pin. Add a city by appending a line.

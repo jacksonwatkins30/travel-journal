@@ -62,6 +62,8 @@ header.top nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:sp
 .tip a:hover{color:var(--mustard)}
 .local-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding:12px 16px;border:3px solid var(--ink);border-radius:14px;background:#FFF3D6;font-weight:700;font-size:14px}
 .local-bar[hidden]{display:none}
+.publish{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border:3px solid var(--ink);border-radius:999px;background:var(--mustard);color:var(--ink);text-decoration:none;font-weight:900;box-shadow:3px 3px 0 var(--ink)}
+.publish:hover{color:var(--ink);transform:translate(-1px,-1px)}
 .local-bar button{min-height:40px;padding:0 14px;border:3px solid var(--ink);border-radius:999px;background:var(--paper);font:inherit;font-weight:900;cursor:pointer}
 footer{border-top:3px solid var(--ink);background:var(--ink);color:var(--sand);padding:26px 0;margin-top:72px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;font-size:13px}
@@ -83,7 +85,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     <div><span class="script">Pins on the map</span><h1 class="display">States I've Been</h1></div>
     <div class="counts" aria-live="polite">
       <div class="card count c1"><span class="display" id="stateCount">0</span><span>of 50 states</span></div>
-      <div class="card count c2"><span class="display" id="cityCount">0</span><span>cities</span></div>
     </div>
   </div>
 
@@ -101,7 +102,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     <div class="hint" id="hint">Drag to spin · scroll or pinch to zoom · tap a state or pin</div>
   </div>
 
-  <div class="local-bar" id="localBar" role="status" hidden><span id="localMsg"></span><span style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" onclick="window.copyStates()">Copy my list</button><button type="button" onclick="window.resetStates()">Undo my changes</button></span></div>
+  <div class="local-bar" id="localBar" role="status" hidden><span id="localMsg"></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="publish" id="publishLink" href="#" target="_blank" rel="noopener">Publish to site</a><button type="button" onclick="window.resetStates()">Undo my changes</button></span></div>
 </main>
 
 <footer><div class="wrap"><span class="display" style="font-size:18px">Field Notes</span><span>State boundaries: US Census Bureau</span></div></footer>
@@ -132,11 +133,16 @@ function hideTip(){const tip=document.getElementById('tip'); tip.classList.remov
 function refreshUI(){
   const v=visitedSet();
   document.getElementById('stateCount').textContent=visitedCount();
-  document.getElementById('cityCount').textContent=FN.CITIES.length;
   document.querySelectorAll('#flatLayer .st').forEach(el=>{const on=v.has(el.dataset.id);el.classList.toggle('on',on);el.setAttribute('aria-pressed',on);});
   const local=localStates(), bar=document.getElementById('localBar');
   if(local){const add=local.filter(s=>!FN.BASE.includes(s)).length, rem=FN.BASE.filter(s=>!local.includes(s)).length;
-    bar.hidden=!(add||rem); document.getElementById('localMsg').textContent=`Your changes (${add} added${rem?', '+rem+' removed':''}) are saved on this device only. Copy your list and send it to Claude to make them permanent.`;}
+    bar.hidden=!(add||rem);
+    if(!add&&!rem){try{localStorage.removeItem('fieldnotes-states');}catch(e){}}
+    const addN=local.filter(s=>!FN.BASE.includes(s)).map(id=>FN.names[id]||id), remN=FN.BASE.filter(s=>!local.includes(s)).map(id=>FN.names[id]||id);
+    document.getElementById('localMsg').textContent=`Only on this device so far: ${addN.length?'added '+addN.join(', '):''}${addN.length&&remN.length?'; ':''}${remN.length?'removed '+remN.join(', '):''}. Publish to update the site for everyone.`;
+    const title='Map update: '+[...addN.map(n=>'+'+n),...remN.map(n=>'-'+n)].join(' ');
+    const body='Submit this to update the Field Notes map for everyone. It takes about a minute to go live.\n\nvisited: '+[...local].sort().join(', ')+'\n';
+    document.getElementById('publishLink').href='https://github.com/jacksonwatkins30/travel-journal/issues/new?title='+encodeURIComponent(title.slice(0,120))+'&body='+encodeURIComponent(body);}
   else bar.hidden=true;
   FN.listeners.forEach(fn=>fn(v));
 }
