@@ -1,5 +1,36 @@
 [
   {
+    "id": "mcm-2024",
+    "title": "Marine Corps Marathon",
+    "place": "Washington, D.C.",
+    "when": "Oct 27, 2024",
+    "start": "2024-10-26",
+    "end": "2024-10-27",
+    "states": [
+      "DC",
+      "VA"
+    ],
+    "nights": 1,
+    "blurb": "Marathon weekend in the capital: 26.2 miles past the monuments, finishing at the Marine Corps War Memorial in 4:08:17.",
+    "highlights": [],
+    "photos": []
+  },
+  {
+    "id": "chicago-2025",
+    "title": "Chicago Marathon",
+    "place": "Chicago, IL",
+    "when": "Oct 12, 2025",
+    "start": "2025-10-11",
+    "end": "2025-10-12",
+    "states": [
+      "IL"
+    ],
+    "nights": 1,
+    "blurb": "A flat, fast lap through Chicago's neighborhoods, finished in 3:53:09.",
+    "highlights": [],
+    "photos": []
+  },
+  {
     "id": "early-2026",
     "title": "[Early 2026 trip]",
     "place": "[Destination]",
@@ -7,8 +38,14 @@
     "done": true,
     "nights": null,
     "blurb": "[A line or two about where you went and what you did.]",
-    "highlights": ["[Best meal]", "[Best view]", "[Story you'll keep telling]"],
-    "photos": []
+    "highlights": [
+      "[Best meal]",
+      "[Best view]",
+      "[Story you'll keep telling]"
+    ],
+    "photos": [],
+    "states": [],
+    "year": 2026
   },
   {
     "id": "out-west",
@@ -19,21 +56,28 @@
     "end": "2026-10-02",
     "nights": 4,
     "blurb": "A week off to unplug: nature, exploring, and keeping marathon training on track.",
-    "highlights": ["[Best meal]", "[Best view]", "[Story you'll keep telling]"],
-    "photos": []
+    "highlights": [
+      "[Best meal]",
+      "[Best view]",
+      "[Story you'll keep telling]"
+    ],
+    "photos": [],
+    "states": []
   },
   {
     "id": "dallas-scouting",
     "title": "Dallas Scouting",
     "place": "Dallas, TX",
-    "state": "TX",
     "when": "Nov 15, 2026",
     "start": "2026-11-15",
     "end": "2026-11-16",
     "nights": 1,
     "blurb": "Touring apartments in Uptown and West Village ahead of the move.",
     "highlights": [],
-    "photos": []
+    "photos": [],
+    "states": [
+      "TX"
+    ]
   },
   {
     "id": "mountain-cabin",
@@ -45,30 +89,35 @@
     "nights": 4,
     "blurb": "Four nights tucked into the mountains: hiking, coffee, reading, campfires and a few Coors Banquets.",
     "highlights": [],
-    "photos": []
+    "photos": [],
+    "states": []
   },
   {
     "id": "tahoe",
     "title": "Tahoe Ski & Golf",
     "place": "Lake Tahoe, CA",
-    "state": "CA",
     "when": "Late Feb – Early Mar 2027",
     "sort": "2027-02-25",
     "nights": null,
     "blurb": "Ski days in Tahoe, a round of golf nearby, and cheering on the Napa Valley Marathon.",
     "highlights": [],
-    "photos": []
+    "photos": [],
+    "states": [
+      "CA"
+    ]
   },
   {
     "id": "dallas-move",
     "title": "New Home Base",
     "place": "Dallas, TX",
-    "state": "TX",
     "when": "March 2027",
     "sort": "2027-03-15",
     "nights": null,
     "blurb": "Packing up New York and planting a flag in Dallas.",
     "highlights": [],
-    "photos": []
+    "photos": [],
+    "states": [
+      "TX"
+    ]
   }
 ]

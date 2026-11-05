@@ -117,7 +117,45 @@ section.block{padding-top:60px}
 .b-item.done .b-text{text-decoration:line-through;color:var(--muted)}
 footer{border-top:3px solid var(--ink);background:var(--ink);color:var(--sand);padding:26px 0;margin-top:88px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center}
+
+/* states map */
+.map-wrap{position:relative;padding:20px 20px 16px;display:flex;flex-direction:column;gap:12px}
+.map-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.map-count{display:flex;align-items:baseline;gap:10px}
+.map-count .display{font-size:44px;line-height:1}
+.map-count span:last-child{font-weight:800;color:var(--muted)}
+.map-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;font-weight:800}
+.map-legend i{display:inline-block;width:14px;height:14px;border-radius:4px;border:2px solid var(--ink);margin-right:6px;vertical-align:-2px}
+#usMap{width:100%;height:auto;display:block;overflow:visible}
+#usMap .st{fill:var(--paper);stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round;cursor:pointer;transition:fill .2s ease;transform-box:fill-box;transform-origin:center;outline:none}
+#usMap .st:hover,#usMap .st:focus-visible{fill:var(--tan)}
+#usMap .st.on{fill:var(--mustard)}
+#usMap .st.on:hover,#usMap .st.on:focus-visible{fill:#D59A2A}
+#usMap .st.yr{fill:var(--terra)}
+#usMap .st.yr:hover{fill:#A3482A}
+#usMap .st.plan{fill:url(#hatch)}
+#usMap .st.pick{stroke-width:3.5}
+#usMap .st.pop{animation:statePop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes statePop{0%{transform:scale(1)}45%{transform:scale(1.18)}100%{transform:scale(1)}}
+.map-info{min-height:56px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 16px;border:2px dashed var(--ink);border-radius:14px;background:var(--sand);font-weight:700}
+.map-info b{font-family:'Bowlby One',sans-serif;font-weight:400;font-size:20px}
+.map-info .tag{font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:2px solid var(--ink)}
+.map-info .tag.y{background:var(--mustard)}.map-info .tag.n{background:var(--paper)}
+.map-info button{min-height:40px;padding:0 14px;border:3px solid var(--ink);border-radius:999px;background:var(--paper);font:inherit;font-weight:900;box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+.edit-on #usMap .st{cursor:copy}
+.local-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:12px 16px;border:3px solid var(--ink);border-radius:14px;background:#FFF3D6;font-weight:700;font-size:14px}
+.local-bar[hidden]{display:none}
+.local-bar .btns{display:flex;gap:8px;flex-wrap:wrap}
+.local-bar button{min-height:40px;padding:0 14px;border:3px solid var(--ink);border-radius:999px;background:var(--paper);font:inherit;font-weight:900;cursor:pointer}
+.years{display:flex;flex-wrap:wrap;gap:10px;margin:-6px 0 22px}
+.year-btn{min-height:48px;min-width:96px;padding:0 20px;border:3px solid var(--ink);border-radius:14px;font-family:'Bowlby One',sans-serif;font-size:20px;background:var(--paper);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.year-btn.on{background:var(--ink);color:var(--paper)}
+.year-btn small{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;margin-left:6px;opacity:.75}
+.trail-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;z-index:2}
+.trail-empty[hidden]{display:none}
+.trail-empty div{background:var(--paper);border:3px dashed var(--ink);border-radius:18px;padding:18px 22px;font-weight:800;max-width:420px}
 @media(max-width:640px){
+  .map-wrap{padding:14px 10px 12px}.map-count .display{font-size:34px}.year-btn{min-width:80px;font-size:17px}
   .hero svg{height:380px}.hero-card{top:24px;padding:18px 20px}
   header.top{position:static}.links a{padding:8px 10px}
   .trail{height:420px}.stop-label{display:none}.stop.on .stop-label{display:block;font-size:12px;padding:2px 8px;max-width:150px;overflow:hidden;text-overflow:ellipsis}
@@ -134,7 +172,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 <header class="top">
   <nav class="wrap" aria-label="Primary">
     <a href="#top" class="brand display"><span class="compass"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B2A1E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Field Notes</a>
-    <div class="links"><a href="#trail">The Trail</a><a href="#passport">Passport</a><a href="#snapshots">Snapshots</a><a href="#bucket">Bucket List</a></div>
+    <div class="links"><a href="#states">States</a><a href="#trail">The Trail</a><a href="#passport">Passport</a><a href="#snapshots">Snapshots</a><a href="#bucket">Bucket List</a></div>
   </nav>
 </header>
 
@@ -163,8 +201,23 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 
 <div class="wrap stats" id="stats"></div>
 
+<section class="wrap block" id="states">
+  <div class="sec-head"><div><span class="script">Pins on the map</span><h2 class="display">States</h2></div>
+    <button type="button" class="filter press" id="editBtn" aria-pressed="false" onclick="toggleEdit()">Edit map</button></div>
+  <div class="card map-wrap" id="mapWrap">
+    <div class="map-top">
+      <div class="map-count"><span class="display" id="stateCount">0</span><span>of 50 states</span></div>
+      <div class="map-legend" aria-hidden="true"><span><i style="background:#E0A93B"></i>Been there</span><span><i style="background:#B8552F"></i>Trips in <span id="legendYear"></span></span><span><i style="background:repeating-linear-gradient(45deg,#FBF5E8 0 3px,#B8552F 3px 5px)"></i>Coming up</span></div>
+    </div>
+    <svg id="usMap" viewBox="0 0 975 610" role="group" aria-label="Map of US states. Visited states are lit up."><defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#FBF5E8"/><rect width="3" height="8" fill="#B8552F"/></pattern></defs><g id="stateLayer"></g></svg>
+    <div class="map-info" id="mapInfo" aria-live="polite">Tap a state to see trips there.</div>
+  </div>
+  <div class="local-bar" id="localBar" role="status" hidden><span id="localMsg"></span><span class="btns"><button type="button" onclick="copyStates()">Copy my list</button><button type="button" onclick="resetStates()">Undo my changes</button></span></div>
+</section>
+
 <section class="wrap block" id="trail">
-  <div class="sec-head"><div><span class="script">Follow the dotted line</span><h2 class="display">The Trail</h2></div><span class="hint">Tap a stop to open its journal page</span></div>
+  <div class="sec-head"><div><span class="script">Follow the dotted line</span><h2 class="display">The Trail</h2></div><span class="hint">Pick a year, then tap a stop</span></div>
+  <div class="years" role="group" aria-label="Trips by year" id="yearToggles"></div>
   <div class="trail card">
     <svg viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
       <g fill="none" stroke="#D4BF95" stroke-width="2"><path d="M0 90C120 70 220 110 340 80S600 60 720 100 900 70 1000 90"/><path d="M0 300C140 280 260 320 400 290S640 270 780 310 920 290 1000 300"/><path d="M0 200C160 180 280 220 420 190S700 170 840 210 950 190 1000 200"/></g>
@@ -172,6 +225,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     </svg>
     <div class="legend" aria-hidden="true"><span><i style="background:#5E6B33"></i>Been there</span><span><i style="background:#FBF5E8;border-style:dashed"></i>Coming up</span></div>
     <div id="stops"></div>
+    <div class="trail-empty" id="trailEmpty" hidden><div id="trailEmptyMsg"></div></div>
   </div>
   <div class="journal card" id="journal" aria-live="polite"></div>
 </section>
@@ -201,31 +255,36 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const todayISO = (()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
 const INKS=['#B8552F','#5E6B33','#2F6F73','#8A4B2A','#6B5A2A','#7A3E5A'], TILTS=[-6,4,-3,7,-5,3], PTILTS=[-3,2,-1.5,3,-2.5,1.5];
-let TRIPS=[], BUCKET=[], sel=null, filter='all';
+let TRIPS=[], BUCKET=[], sel=null, filter='all', US=null, BASE_VISITED=[], selYear=new Date().getFullYear(), editMode=false, pickedState=null;
 
 const isDone = t => t.end ? t.end < todayISO : (t.start ? t.start < todayISO : !!t.done);
-const sortKey = t => t.start || t.sort || '0000';
+const sortKey = t => t.start || t.sort || (t.year? t.year+'-00-00' : '0000');
+const tripYear = t => +(t.year || (t.start||t.sort||'').slice(0,4)) || null;
+const yearTrips = () => TRIPS.filter(t=>tripYear(t)===selYear);
 
 function renderStats(){
   const yr = new Date().getFullYear();
   const thisYear = TRIPS.filter(t=>isDone(t) && (sortKey(t).startsWith(String(yr)) || (!t.start && !t.sort && t.done)));
   const nights = TRIPS.filter(isDone).map(t=>t.nights).filter(n=>typeof n==='number');
-  const states = new Set(TRIPS.filter(isDone).map(t=>t.state).filter(Boolean));
   const next = TRIPS.filter(t=>!isDone(t)).sort((a,b)=>sortKey(a)<sortKey(b)?-1:1)[0];
   let nextSub='';
   if(next){ if(next.start){const days=Math.ceil((new Date(next.start+'T00:00:00')-new Date())/86400000);nextSub=days>1?'in '+days+' days':days===1?'tomorrow':'on the road now';} else nextSub=next.when; }
-  const cards=[['Trips this year',thisYear.length,'and counting'],['States visited',states.size||'—','new pins on the map'],['Nights away',nights.length?nights.reduce((a,b)=>a+b,0):'—','not in my own bed'],['Next up',next?next.place.replace(/^\[|\]$/g,'').split(',')[0]:'—',nextSub]];
+  const cards=[['Trips this year',thisYear.length,'and counting'],['States visited',visitedCount(),'lit up on the map'],['Nights away',nights.length?nights.reduce((a,b)=>a+b,0):'—','not in my own bed'],['Next up',next?next.place.replace(/^\[|\]$/g,'').split(',')[0]:'—',nextSub]];
   document.getElementById('stats').innerHTML = cards.map((c,i)=>`<div class="card stat" style="transform:rotate(${[-1,1,-.5,1.2][i]}deg)"><span class="lbl">${c[0]}</span><span class="val display">${esc(c[1])}</span><span class="sub">${esc(c[2])}</span></div>`).join('');
 }
 
 function renderTrail(){
-  const path=document.getElementById('trailPath'), len=path.getTotalLength(), n=TRIPS.length;
-  document.getElementById('stops').innerHTML = TRIPS.map((t,i)=>{
+  const list=yearTrips(); const path=document.getElementById('trailPath'), len=path.getTotalLength(), n=list.length;
+  const empty=document.getElementById('trailEmpty'), jEl=document.getElementById('journal');
+  empty.hidden = n>0; jEl.hidden = n===0;
+  if(!n) document.getElementById('trailEmptyMsg').textContent = 'No trips logged for '+selYear+' yet. Details to follow!';
+  if(n && !list.some(t=>t.id===sel)){ const nx=list.find(t=>!isDone(t)); sel=(nx||list[list.length-1]).id; }
+  document.getElementById('stops').innerHTML = list.map((t,i)=>{
     const p=path.getPointAtLength(n>1? len*(0.02+0.96*i/(n-1)) : len/2);
     const on=t.id===sel, done=isDone(t);
     return `<div class="stop${on?' on':''}" style="left:${p.x/10}%;top:${p.y/3.8}%"><button type="button" class="stop-btn ${on?'on':done?'done':'next'}" aria-pressed="${on}" aria-label="Stop ${i+1}: ${esc(t.title)}" onclick="pick('${t.id}')">${i+1}</button><span class="stop-label">${esc(t.title)}</span></div>`;
   }).join('');
-  const t=TRIPS.find(x=>x.id===sel); if(!t) return;
+  const t=list.find(x=>x.id===sel); if(!t) return;
   const done=isDone(t), photo=(t.photos||[])[0];
   const j=document.getElementById('journal');
   j.innerHTML = `<div class="j-photo"><div class="polaroid"><span class="tape"></span><div class="img">${photo?`<img src="${esc(photo.src||photo)}" alt="${esc(photo.caption||t.title)}">`:'[Trip photo]'}</div><span class="cap">${esc(t.place)}</span></div></div>
@@ -260,13 +319,86 @@ function renderBucket(){
   document.getElementById('bucketCount').textContent = done+' of '+BUCKET.length+' checked off';
 }
 function toggleBucket(i){const st=bucketState();st[i]=!st[i];try{localStorage.setItem('fieldnotes-bucket',JSON.stringify(st));}catch(e){}renderBucket();}
-function pick(id,scroll){sel=id;renderTrail();if(scroll)document.getElementById('trail').scrollIntoView();}
+function pick(id,scroll){const t=TRIPS.find(x=>x.id===id); if(t&&tripYear(t)&&tripYear(t)!==selYear){selYear=tripYear(t);renderYears();renderMap();} sel=id;renderTrail();if(scroll)document.getElementById('trail').scrollIntoView();}
 function setFilter(f){filter=f;renderPassport();}
 
-Promise.all(['data/trips.json','data/bucket.json'].map(u=>fetch(u,{cache:'no-cache'}).then(r=>r.json()))).then(([t,b])=>{
-  TRIPS=t.sort((a,b)=>sortKey(a)<sortKey(b)?-1:1); BUCKET=b;
+
+// ----- states map -----
+const STATE_NAMES = {};
+function localStates(){try{const v=localStorage.getItem('fieldnotes-states');return v?JSON.parse(v):null;}catch(e){return null;}}
+function visitedSet(){return new Set(localStates()||BASE_VISITED);}
+function visitedCount(){return [...visitedSet()].filter(s=>s!=='DC').length;}
+function renderMap(){
+  if(!US) return;
+  const v=visitedSet();
+  const yr=new Set(yearTrips().flatMap(t=>t.states||[]));
+  const upcoming=new Set(TRIPS.filter(t=>!isDone(t)).flatMap(t=>t.states||[]));
+  const layer=document.getElementById('stateLayer');
+  if(!layer.childElementCount){
+    layer.innerHTML=US.states.map(s=>{STATE_NAMES[s.id]=s.name;return `<path class="st" id="st-${s.id}" d="${s.d}" tabindex="0" role="button" data-id="${s.id}"><title>${esc(s.name)}</title></path>`;}).join('');
+    layer.addEventListener('click',e=>{const el=e.target.closest('.st'); if(el) stateClick(el.dataset.id);});
+    layer.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('st')){e.preventDefault();stateClick(e.target.dataset.id);}});
+  }
+  layer.querySelectorAll('.st').forEach(el=>{
+    const id=el.dataset.id, on=v.has(id);
+    el.classList.toggle('on',on);
+    el.classList.toggle('yr',on&&yr.has(id));
+    el.classList.toggle('plan',!on&&upcoming.has(id));
+    el.classList.toggle('pick',id===pickedState);
+    el.setAttribute('aria-pressed',on);
+    el.setAttribute('aria-label',STATE_NAMES[id]+(on?', visited':', not visited yet'));
+  });
+  const c=visitedCount(); document.getElementById('stateCount').textContent=c;
+  document.getElementById('legendYear').textContent=selYear;
+  const statVals=document.querySelectorAll('#stats .stat'); statVals.forEach(card=>{if(card.querySelector('.lbl').textContent==='States visited')card.querySelector('.val').textContent=c;});
+  const local=localStates(); const bar=document.getElementById('localBar');
+  if(local){
+    const add=local.filter(s=>!BASE_VISITED.includes(s)).length, rem=BASE_VISITED.filter(s=>!local.includes(s)).length;
+    bar.hidden=!(add||rem);
+    document.getElementById('localMsg').textContent=`Your map changes (${add} added${rem?', '+rem+' removed':''}) are saved on this device only. Send me your list and I'll make them permanent for everyone.`;
+  } else bar.hidden=true;
+}
+function stateClick(id){
+  pickedState=id;
+  if(editMode){
+    const v=visitedSet(); v.has(id)?v.delete(id):v.add(id);
+    const arr=[...v].sort(); const same=arr.length===BASE_VISITED.length&&arr.every((s,i)=>s===[...BASE_VISITED].sort()[i]);
+    try{ same?localStorage.removeItem('fieldnotes-states'):localStorage.setItem('fieldnotes-states',JSON.stringify(arr)); }catch(e){}
+    renderStats(); renderMap();
+    const el=document.getElementById('st-'+id); if(el&&v.has(id)){el.classList.remove('pop');void el.getBoundingClientRect();el.classList.add('pop');}
+  } else renderMap();
+  showStateInfo(id);
+}
+function showStateInfo(id){
+  const on=visitedSet().has(id), trips=TRIPS.filter(t=>(t.states||[]).includes(id));
+  let h=`<b>${esc(STATE_NAMES[id])}</b><span class="tag ${on?'y':'n'}">${on?'Been there':'Not yet'}</span>`;
+  h+= trips.length ? trips.map(t=>`<button type="button" onclick="pick('${t.id}',true)">${esc(t.title)} · ${tripYear(t)||''}</button>`).join('') : `<span style="color:var(--muted)">${editMode?(on?'Lit up! Tap again to turn off.':'Tap again to light it up.'):'No trips logged here yet.'}</span>`;
+  document.getElementById('mapInfo').innerHTML=h;
+}
+function toggleEdit(){
+  editMode=!editMode;
+  const b=document.getElementById('editBtn'); b.classList.toggle('on',editMode); b.setAttribute('aria-pressed',editMode); b.textContent=editMode?'Done editing':'Edit map';
+  document.getElementById('mapWrap').classList.toggle('edit-on',editMode);
+  document.getElementById('mapInfo').textContent=editMode?'Tap states to light up where you\'ve been.':'Tap a state to see trips there.';
+}
+function copyStates(){
+  const list=[...visitedSet()].sort().join(', ');
+  const done=()=>{document.getElementById('localMsg').textContent='Copied: '+list+'. Paste it to Claude to make it permanent.';};
+  if(navigator.clipboard) navigator.clipboard.writeText(list).then(done,()=>{document.getElementById('localMsg').textContent=list;}); else document.getElementById('localMsg').textContent=list;
+}
+function resetStates(){try{localStorage.removeItem('fieldnotes-states');}catch(e){} renderStats(); renderMap(); if(pickedState) showStateInfo(pickedState);}
+
+// ----- year toggles -----
+function renderYears(){
+  const yrs=[...new Set([2024,2025,2026,...TRIPS.map(tripYear).filter(Boolean)])].sort();
+  document.getElementById('yearToggles').innerHTML=yrs.map(y=>{const n=TRIPS.filter(t=>tripYear(t)===y).length;return `<button type="button" class="year-btn press${y===selYear?' on':''}" aria-pressed="${y===selYear}" onclick="setYear(${y})">${y}<small>${n} trip${n===1?'':'s'}</small></button>`;}).join('');
+}
+function setYear(y){selYear=y;renderYears();renderTrail();renderMap();}
+
+Promise.all(['data/trips.json','data/bucket.json','data/us-states.json','data/visited.json'].map(u=>fetch(u,{cache:'no-cache'}).then(r=>r.json()))).then(([t,b,us,vis])=>{
+  TRIPS=t.sort((a,b)=>sortKey(a)<sortKey(b)?-1:1); BUCKET=b; US=us; BASE_VISITED=(vis&&vis.visited)||[];
   const next=TRIPS.find(x=>!isDone(x)); sel=(next||TRIPS[TRIPS.length-1]||{}).id;
-  [renderStats,renderTrail,renderPassport,renderPhotos,renderBucket].forEach(fn=>{try{fn();}catch(e){console.error(e);}});
+  [renderStats,renderYears,renderMap,renderTrail,renderPassport,renderPhotos,renderBucket].forEach(fn=>{try{fn();}catch(e){console.error(e);}});
 });
 </script>
 </body>
