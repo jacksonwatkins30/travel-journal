@@ -153,7 +153,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 .year-btn small{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;margin-left:6px;opacity:.75}
 .trail-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;z-index:2}
 .trail-empty[hidden]{display:none}
-.stat-link{text-decoration:none;color:var(--ink);background:var(--mustard)}
+.stat-link{text-decoration:none;color:var(--ink);background:#A9CB8E}
 .stat-link:hover{color:var(--ink)}
 .stat-link .sub{color:var(--ink)}
 .trail-empty div{background:var(--paper);border:3px dashed var(--ink);border-radius:18px;padding:18px 22px;font-weight:800;max-width:420px}
@@ -315,8 +315,8 @@ function setFilter(f){filter=f;renderPassport();}
 
 // ----- states map -----
 const STATE_NAMES = {};
-function localStates(){try{const v=localStorage.getItem('fieldnotes-states');return v?JSON.parse(v):null;}catch(e){return null;}}
-function visitedSet(){return new Set(localStates()||BASE_VISITED);}
+function localStates(){return null;}
+function visitedSet(){return new Set(BASE_VISITED);}
 function visitedCount(){return [...visitedSet()].filter(s=>s!=='DC').length;}
 function renderMap(){
   if(!US||!document.getElementById('stateLayer')) return;
