@@ -52,5 +52,7 @@
  {"name": "Charleston", "st": "SC", "lat": 32.7765, "lon": -79.9311},
  {"name": "Hilton Head Island", "st": "SC", "lat": 32.2163, "lon": -80.7526},
  {"name": "Darien", "st": "CT", "lat": 41.0787, "lon": -73.4693},
- {"name": "Orleans", "st": "MA", "lat": 41.7898, "lon": -69.9897}
+ {"name": "Orleans", "st": "MA", "lat": 41.7898, "lon": -69.9897},
+ {"name": "Wrightsville Beach", "st": "NC", "lat": 34.2085, "lon": -77.7964},
+ {"name": "Annapolis", "st": "MD", "lat": 38.9784, "lon": -76.4922}
 ]

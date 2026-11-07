@@ -31,38 +31,203 @@
     "photos": []
   },
   {
-    "id": "early-2026",
-    "title": "[Early 2026 trip]",
-    "place": "[Destination]",
-    "when": "[Month] 2026",
-    "done": true,
-    "nights": null,
-    "blurb": "[A line or two about where you went and what you did.]",
-    "highlights": [
-      "[Best meal]",
-      "[Best view]",
-      "[Story you'll keep telling]"
+    "id": "unc-duke",
+    "title": "UNC vs. Duke",
+    "place": "Chapel Hill, NC",
+    "when": "Feb 6 – 8, 2026",
+    "start": "2026-02-06",
+    "end": "2026-02-08",
+    "nights": 2,
+    "states": [
+      "NC"
     ],
-    "photos": [],
-    "states": [],
-    "year": 2026
+    "blurb": "Flew home for one of the greatest Carolina–Duke games ever played. Seth Trimble buried a corner three at the buzzer to beat a stacked Duke team, and the Smith Center got its first court storm I've ever seen.",
+    "highlights": [
+      "Storming the court in the Dean Dome",
+      "Rushing Franklin Street with Mom",
+      "Celebrating at Bob's with Duwe",
+      "Seeing Dad before flying back"
+    ],
+    "photos": []
   },
   {
-    "id": "out-west",
-    "title": "Week Out West",
-    "place": "[Destination]",
-    "when": "Sep 28 – Oct 2, 2026",
-    "start": "2026-09-28",
-    "end": "2026-10-02",
-    "nights": 4,
-    "blurb": "A week off to unplug: nature, exploring, and keeping marathon training on track.",
-    "highlights": [
-      "[Best meal]",
-      "[Best view]",
-      "[Story you'll keep telling]"
+    "id": "austin-marathon",
+    "title": "Austin Marathon",
+    "place": "Austin, TX",
+    "when": "Feb 12 – 17, 2026",
+    "start": "2026-02-12",
+    "end": "2026-02-17",
+    "nights": 5,
+    "states": [
+      "TX"
     ],
-    "photos": [],
-    "states": []
+    "blurb": "Cheered on Maddy at the Austin Marathon: a brutally hilly course that finishes straight up a hill. Back in Austin for the first time in about 15 years, we went looking for the house we lived in until we were seven.",
+    "highlights": [
+      "Watching Maddy conquer the hills",
+      "Wild Cat Hollow: our old street, now all new mansions",
+      "Exploring West Lake Hills",
+      "Rediscovering the city after 15 years"
+    ],
+    "photos": []
+  },
+  {
+    "id": "puerto-rico",
+    "title": "Puerto Rico",
+    "place": "Puerto Rico",
+    "when": "Apr 26 – May 5, 2026",
+    "start": "2026-04-26",
+    "end": "2026-05-05",
+    "nights": 9,
+    "states": [],
+    "blurb": "A week off with my cousin Will to celebrate him getting into med school at Marshall, and to thaw out after a brutal New York winter. Mission accomplished on collecting dad lore.",
+    "highlights": [
+      "Hiking El Yunque National Forest",
+      "Skydiving together",
+      "Rooftops, great meals, and hot runs",
+      "Watching old teammate Brady Manek play against Jae Crowder",
+      "An Uber driver who was definitely drunk"
+    ],
+    "photos": []
+  },
+  {
+    "id": "dillon-beach",
+    "title": "Rob's Bachelor Party",
+    "place": "Dillon Beach, CA",
+    "when": "May 22 – 25, 2026",
+    "start": "2026-05-22",
+    "end": "2026-05-25",
+    "nights": 3,
+    "states": [
+      "CA"
+    ],
+    "blurb": "Flew into SF and drove two hours north over the Golden Gate to an unreal Airbnb with UNC guys, NYC guys, and Rob's brothers and dad. Rolling green hills, cows, and cliffs over the Pacific; it felt like Scotland. Training camp started here.",
+    "highlights": [
+      "Two rounds of links golf",
+      "Oysters, chips, and beers in a cove after golf",
+      "DJ's hill record on a half-mile climb",
+      "Catching Baylor Hayes (Tulsa QB1) throwing gas",
+      "Trail run through cow pastures to a private beach with Duwe and DJ",
+      "Giants game, on the Jumbotron, then red eyes home"
+    ],
+    "photos": []
+  },
+  {
+    "id": "rob-kai-wedding",
+    "title": "Rob & Kai's Wedding",
+    "place": "Wrightsville Beach, NC",
+    "when": "Jun 11 – 15, 2026",
+    "start": "2026-06-11",
+    "end": "2026-06-15",
+    "nights": 4,
+    "states": [
+      "NC"
+    ],
+    "blurb": "Flew down early for Rob and Kai's wedding, one of the most wholesome and refreshing weekends I can remember, surrounded by faithful, inspiring people. Training camp, part two.",
+    "highlights": [
+      "Sunrise runs with Rob's dad and an intro to F3: faith, fellowship, fitness",
+      "Worship on the beach the morning of the wedding",
+      "Sweating it out together in the heat",
+      "Dance floor in a downpour"
+    ],
+    "photos": []
+  },
+  {
+    "id": "fourth-home",
+    "title": "Fourth of July at Home",
+    "place": "Riverton, NC",
+    "when": "Jul 2 – 5, 2026",
+    "start": "2026-07-02",
+    "end": "2026-07-05",
+    "nights": 3,
+    "states": [
+      "NC"
+    ],
+    "blurb": "Home for the Fourth, and to say goodbye to Carly, our childhood black lab. She held on until Maddy and I could see her one last time. Being surrounded by family and love carried us through.",
+    "highlights": [
+      "One last visit with Carly",
+      "Family all together"
+    ],
+    "photos": []
+  },
+  {
+    "id": "cape-cod",
+    "title": "Cape Cod",
+    "place": "Orleans, MA",
+    "when": "Sep 2 – 7, 2026",
+    "start": "2026-09-02",
+    "end": "2026-09-07",
+    "nights": 5,
+    "states": [
+      "MA"
+    ],
+    "blurb": "Labor Day on the Cape with Collin Loughead and his family. A beautiful, picturesque, and very relaxing end to the summer.",
+    "highlights": [
+      "An 18-mile long run: tough but rewarding",
+      "Peaceful afternoon on the boat",
+      "Blowing a lead to Michael Childress on the golf course",
+      "A cover band's farewell show at the Woodshed in Chatham",
+      "Burgers off the truck bed on the drive-on beach"
+    ],
+    "photos": []
+  },
+  {
+    "id": "unc-reunion",
+    "title": "Carolina Basketball Reunion",
+    "place": "Chapel Hill, NC",
+    "when": "Sep 11 – 13, 2026",
+    "start": "2026-09-11",
+    "end": "2026-09-13",
+    "nights": 2,
+    "states": [
+      "NC"
+    ],
+    "blurb": "Reunion weekend with former players from every decade and their families, swapping stories and laughs. Great conversations about Dream On, too. It's so cool to be part of this family.",
+    "highlights": [
+      "Big group photo and a dap from Danny Green",
+      "On the field at halftime of the ETSU game",
+      "Catching up in Vaughn Moore's box",
+      "Reunion dinner at the Smith Center",
+      "Seeing Dad before heading back"
+    ],
+    "photos": []
+  },
+  {
+    "id": "arctos-superday",
+    "title": "Arctos Super Day",
+    "place": "Dallas, TX",
+    "when": "Sep 24 – 27, 2026",
+    "start": "2026-09-24",
+    "end": "2026-09-27",
+    "nights": 3,
+    "states": [
+      "TX"
+    ],
+    "blurb": "Flew down for the Arctos case study, model test, and super day, then stayed the weekend to see if I could picture life in Dallas. I got the job!",
+    "highlights": [
+      "Nailing the super day",
+      "16-mile Saturday run",
+      "College football and drinks with friends",
+      "Catching up with a high school friend at SMU"
+    ],
+    "photos": []
+  },
+  {
+    "id": "annapolis",
+    "title": "Navy vs. Tulsa",
+    "place": "Annapolis, MD",
+    "when": "Oct 10 – 11, 2026",
+    "start": "2026-10-10",
+    "end": "2026-10-11",
+    "nights": 1,
+    "states": [
+      "MD"
+    ],
+    "blurb": "DJ and I drove down early Saturday (after a rather rambunctious night) to reunite with Rob, Kai, and the Hayes family for Navy vs. Tulsa.",
+    "highlights": [
+      "An incredible Navy stadium",
+      "Great lunch and dinner with the crew"
+    ],
+    "photos": []
   },
   {
     "id": "dallas-scouting",
@@ -80,17 +245,64 @@
     ]
   },
   {
-    "id": "mountain-cabin",
-    "title": "Mountain Cabin",
-    "place": "[Mountain town]",
+    "id": "flathead-lake",
+    "title": "Flathead Lake",
+    "place": "Flathead Lake, MT",
     "when": "Nov 16 – 20, 2026",
     "start": "2026-11-16",
     "end": "2026-11-20",
     "nights": 4,
+    "states": [
+      "MT"
+    ],
     "blurb": "Four nights tucked into the mountains: hiking, coffee, reading, campfires and a few Coors Banquets.",
     "highlights": [],
-    "photos": [],
-    "states": []
+    "photos": []
+  },
+  {
+    "id": "thanksgiving-nc",
+    "title": "Thanksgiving",
+    "place": "North Carolina",
+    "when": "Nov 20 – 29, 2026",
+    "start": "2026-11-20",
+    "end": "2026-11-29",
+    "nights": 9,
+    "states": [
+      "NC"
+    ],
+    "blurb": "Home to North Carolina for Thanksgiving.",
+    "highlights": [],
+    "photos": []
+  },
+  {
+    "id": "christmas-nc",
+    "title": "Christmas",
+    "place": "North Carolina",
+    "when": "Dec 20 – 27, 2026",
+    "start": "2026-12-20",
+    "end": "2026-12-27",
+    "nights": 7,
+    "states": [
+      "NC"
+    ],
+    "blurb": "Christmas at home in North Carolina.",
+    "highlights": [],
+    "photos": []
+  },
+  {
+    "id": "sun-valley",
+    "title": "Sun Valley",
+    "place": "Sun Valley, ID",
+    "when": "Dec 28, 2026 – Jan 3, 2027",
+    "start": "2026-12-28",
+    "end": "2027-01-03",
+    "nights": 6,
+    "states": [
+      "ID"
+    ],
+    "blurb": "Ringing in the new year in Sun Valley.",
+    "highlights": [],
+    "photos": []
   },
   {
     "id": "tahoe",
