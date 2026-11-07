@@ -1,0 +1,35 @@
+[
+  {
+    "id": "nyc-example-1",
+    "title": "[Something fun you did]",
+    "when": "[Month] 2026",
+    "date": "2026-01-15",
+    "where": "[Neighborhood or venue]",
+    "category": "Sports",
+    "blurb": "[A line or two about it.]",
+    "highlights": [],
+    "photos": []
+  },
+  {
+    "id": "nyc-example-2",
+    "title": "[A great meal]",
+    "when": "[Month] 2026",
+    "date": "2026-03-10",
+    "where": "[Restaurant, neighborhood]",
+    "category": "Eats & Drinks",
+    "blurb": "[What you ordered and who you went with.]",
+    "highlights": [],
+    "photos": []
+  },
+  {
+    "id": "nyc-example-3",
+    "title": "[A memorable run]",
+    "when": "[Month] 2026",
+    "date": "2026-06-01",
+    "where": "[Route]",
+    "category": "Runs",
+    "blurb": "[Where you went and why it stuck with you.]",
+    "highlights": [],
+    "photos": []
+  }
+]

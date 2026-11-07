@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery · Jackson's Travel Log</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23E0A93B' stroke='%233B2A1E' stroke-width='5'/%3E%3Cpath d='M42 22l-6 14-14 6 6-14z' fill='%23B8552F' stroke='%233B2A1E' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Nunito:wght@500;700;800;900&family=Caveat:wght@600;700&display=swap">
+<style>
+:root{--sand:#F2E6CF;--paper:#FBF5E8;--ink:#3B2A1E;--muted:#6B5644;--terra:#B8552F;--olive:#5E6B33;--mustard:#E0A93B;--sky:#9CC3BC;--tan:#E9D8B4;--photo:#D9C9A6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--sand);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--ink)}a:hover{color:var(--terra)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.display{font-family:'Bowlby One',sans-serif;font-weight:400}
+.script{font-family:'Caveat',cursive;font-weight:700;color:var(--terra);font-size:26px}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink)}
+.press{transition:transform .12s ease,box-shadow .12s ease;cursor:pointer}
+.press:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.press:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+header.top{border-bottom:3px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:20}
+header.top nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:22px}
+.compass{width:44px;height:44px;border-radius:50%;background:var(--mustard);border:3px solid var(--ink);display:flex;align-items:center;justify-content:center}
+.links{display:flex;flex-wrap:wrap;gap:2px;font-weight:800;font-size:15px}
+.links a{text-decoration:none;padding:10px 12px;border-radius:10px}
+.links a:hover,.links a[aria-current]{background:var(--tan);color:var(--ink)}
+
+.intro{padding-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px}
+.intro h1{font-size:clamp(40px,6vw,64px);line-height:1}
+.intro p{font-size:17px;font-weight:700;color:var(--muted);max-width:520px;margin-top:8px}
+.years{display:flex;flex-wrap:wrap;gap:10px}
+.year-btn{min-height:48px;min-width:96px;padding:0 20px;border:3px solid var(--ink);border-radius:14px;font-family:'Bowlby One',sans-serif;font-size:20px;background:var(--paper);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.year-btn.on{background:var(--ink);color:var(--paper)}
+
+.covers{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:34px 26px;padding-top:34px}
+.polaroid{position:relative;display:block;background:#fff;border:3px solid var(--ink);padding:12px 12px 10px;box-shadow:5px 5px 0 var(--ink);text-decoration:none;color:var(--ink);transition:transform .2s}
+.polaroid:hover{transform:rotate(0) scale(1.03)!important;color:var(--ink)}
+.polaroid .tape{position:absolute;top:-12px;left:50%;width:80px;height:22px;margin-left:-40px;background:rgba(224,169,59,.75);border:2px solid var(--ink);transform:rotate(3deg)}
+.polaroid .img{aspect-ratio:1/1;background:var(--photo);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--muted);text-align:center;padding:10px;overflow:hidden}
+.polaroid .img img{width:100%;height:100%;object-fit:cover;display:block}
+.polaroid .cap{display:block;margin-top:10px;text-align:center;font-family:'Caveat',cursive;font-size:23px;font-weight:700;line-height:1.05}
+.polaroid .meta{display:block;text-align:center;font-size:13px;font-weight:800;color:var(--muted);margin-top:2px}
+
+.album{padding:28px;margin-top:56px;scroll-margin-top:90px}
+.album-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:22px}
+.album-head h2{font-size:clamp(28px,3.6vw,40px);line-height:1.05}
+.album-head .when{font-size:15px;font-weight:800;color:var(--muted);margin-top:4px}
+.album-head p{font-size:16px;font-weight:600;line-height:1.55;max-width:720px;margin-top:10px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:3px solid var(--ink);border-radius:999px;background:var(--paper);font:inherit;font-weight:900;font-size:15px;text-decoration:none;box-shadow:4px 4px 0 var(--ink);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+.grid button{border:3px solid var(--ink);border-radius:12px;padding:0;overflow:hidden;background:var(--photo);cursor:zoom-in;aspect-ratio:1/1;box-shadow:3px 3px 0 var(--ink)}
+.grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.grid button:hover img{transform:scale(1.05)}
+.empty{border:3px dashed var(--ink);border-radius:16px;padding:28px;text-align:center;background:var(--sand);font-weight:800;color:var(--muted)}
+.empty .script{display:block;font-size:28px}
+
+.lightbox{position:fixed;inset:0;background:rgba(59,42,30,.92);z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:100%;max-height:78vh;border:4px solid var(--paper);border-radius:8px;object-fit:contain}
+.lightbox figcaption{color:var(--paper);font-family:'Caveat',cursive;font-size:26px;text-align:center}
+.lb-btns{display:flex;gap:12px}
+.lb-btns button{min-height:48px;min-width:48px;padding:0 16px;border:3px solid var(--ink);border-radius:999px;background:var(--paper);font:inherit;font-weight:900;cursor:pointer}
+footer{border-top:3px solid var(--ink);background:var(--ink);color:var(--sand);padding:26px 0;margin-top:88px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center}
+@media(max-width:640px){
+  header.top{position:static}.links a{padding:8px 10px}
+  .covers{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}.polaroid .cap{font-size:19px}
+  .album{padding:18px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .year-btn{min-width:80px;font-size:17px}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <nav class="wrap" aria-label="Primary">
+    <a href="index.html" class="brand display"><span class="compass"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B2A1E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Field Notes</a>
+    <div class="links"><a href="states.html">States</a><a href="index.html#trail">The Trail</a><a href="gallery.html" aria-current="page">Gallery</a><a href="nyc.html">New York City</a></div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <div><span class="script">Developed and taped in</span><h1 class="display">Gallery</h1><p>A photo album for every trip. Tap a cover to open it.</p></div>
+    <div class="years" role="group" aria-label="Albums by year" id="years"></div>
+  </div>
+  <div class="covers" id="covers"></div>
+  <div id="albums"></div>
+</main>
+
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <figure style="display:flex;flex-direction:column;align-items:center;gap:12px"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <div class="lb-btns"><button type="button" onclick="step(-1)" aria-label="Previous photo">←</button><button type="button" onclick="closeLb()">Close</button><button type="button" onclick="step(1)" aria-label="Next photo">→</button></div>
+</div>
+
+<footer><div class="wrap"><span class="display" style="font-size:18px">Jackson's Travel Log</span><a href="index.html" style="color:var(--sand);font-weight:800">← Back to the trail</a></div></footer>
+
+<script>
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const todayISO = (()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+const isDone = t => t.end ? t.end < todayISO : (t.start ? t.start < todayISO : !!t.done);
+const sortKey = t => t.start || t.sort || (t.year? t.year+'-00-00' : '0000');
+const tripYear = t => +(t.year || (t.start||t.sort||'').slice(0,4)) || null;
+const TILTS=[-3,2,-1.5,3,-2.5,1.5];
+let TRIPS=[], year=null, cur=[], idx=0;
+const src = p => p.src||p, cap = (p,t) => p.caption||t.title;
+
+function render(){
+  const list=TRIPS.filter(t=>tripYear(t)===year);
+  document.getElementById('covers').innerHTML=list.map((t,i)=>{const ph=(t.photos||[])[0];const n=(t.photos||[]).length;
+    return `<a class="polaroid" href="#${esc(t.id)}" style="transform:rotate(${TILTS[i%TILTS.length]}deg)"><span class="tape"></span><span class="img">${ph?`<img src="${esc(src(ph))}" alt="" loading="lazy">`:esc(t.place)}</span><span class="cap">${esc(t.title)}</span><span class="meta">${esc(t.when)} · ${n?n+' photo'+(n===1?'':'s'):'photos soon'}</span></a>`;}).join('');
+  document.getElementById('albums').innerHTML=list.map(t=>{const ps=t.photos||[];
+    return `<section class="album card" id="${esc(t.id)}"><div class="album-head"><div><h2 class="display">${esc(t.title)}</h2><div class="when">${esc(t.place)} · ${esc(t.when)}</div><p>${esc(t.blurb)}</p></div><a class="btn press" href="index.html?trip=${encodeURIComponent(t.id)}#trail">Read the trip →</a></div>
+    ${ps.length?`<div class="grid">${ps.map((p,i)=>`<button type="button" onclick="openLb('${esc(t.id)}',${i})" aria-label="Open photo: ${esc(cap(p,t))}"><img src="${esc(src(p))}" alt="${esc(cap(p,t))}" loading="lazy"></button>`).join('')}</div>`
+      :`<div class="empty"><span class="script">Photos coming soon</span>This album is waiting on its film to develop.</div>`}</section>`;}).join('');
+}
+function renderYears(){
+  const yrs=[...new Set(TRIPS.map(tripYear).filter(Boolean))].sort((a,b)=>b-a);
+  document.getElementById('years').innerHTML=yrs.map(y=>`<button type="button" class="year-btn press${y===year?' on':''}" aria-pressed="${y===year}" onclick="setYear(${y})">${y}</button>`).join('');
+}
+function setYear(y){year=y;renderYears();render();}
+function openLb(id,i){const t=TRIPS.find(x=>x.id===id);cur=(t.photos||[]).map(p=>({src:src(p),cap:cap(p,t)}));idx=i;show();document.getElementById('lb').hidden=false;}
+function show(){document.getElementById('lbImg').src=cur[idx].src;document.getElementById('lbImg').alt=cur[idx].cap;document.getElementById('lbCap').textContent=cur[idx].cap;}
+function step(d){idx=(idx+d+cur.length)%cur.length;show();}
+function closeLb(){document.getElementById('lb').hidden=true;}
+document.addEventListener('keydown',e=>{if(document.getElementById('lb').hidden)return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1);});
+document.getElementById('lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLb();});
+
+fetch('data/trips.json',{cache:'no-cache'}).then(r=>r.json()).then(t=>{
+  TRIPS=t.filter(isDone).sort((a,b)=>sortKey(a)<sortKey(b)?-1:1);
+  const want=decodeURIComponent(location.hash.slice(1)); const wt=TRIPS.find(x=>x.id===want);
+  year= wt?tripYear(wt) : Math.max(...TRIPS.map(tripYear).filter(Boolean));
+  renderYears(); render();
+  if(wt) requestAnimationFrame(()=>document.getElementById(wt.id).scrollIntoView());
+});
+</script>
+</body>
+</html>

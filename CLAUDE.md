@@ -18,4 +18,8 @@ Edit `data/trips.json`. Each trip:
 ## Cities
 `data/cities.json`: `{name, st, lat, lon}` per city; the states page projects lat/lon onto the map (Albers USA, same as the state shapes) and drops a pin. Add a city by appending a line.
 
-Bucket list: `data/bucket.json`. Check-offs are saved in your browser.
+## Gallery
+`gallery.html` shows one photo album per past trip (from `data/trips.json`), grouped by year. An album is the trip's `photos` list; drop images in `photos/<trip-id>/` and list them on the trip. Each trip on the Trail links to `gallery.html#<trip-id>`.
+
+## New York City
+`nyc.html` showcases things done in NYC, from `data/nyc.json`. Each entry: `id`, `title`, `when` (text shown), `date` (`YYYY-MM-DD`, for sorting), `where`, `category` (Sports, Eats & Drinks, Runs, Culture, Nights Out, Only in NYC), `blurb`, optional `highlights` and `photos` (put images in `photos/nyc/`).
